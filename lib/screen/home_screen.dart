@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  DateTime firstDay = DateTime.now();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +23,9 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _DDay(),
+            _DDay(
+              onHeartPressed: onHeartPressed,
+            ),
             _CoupleImage(),
           ],
         ),
@@ -22,8 +33,16 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
+void onHeartPressed() {
+  print('클릭');
+}
 class _DDay extends StatelessWidget {
+  final GestureTapCallback onHeartPressed;
+
+  _DDay({
+    required this.onHeartPressed,
+  });
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -48,7 +67,7 @@ class _DDay extends StatelessWidget {
         const SizedBox(height: 16.0),
         IconButton(
           iconSize: 60.0,
-          onPressed: () {},
+          onPressed: onHeartPressed,
           icon: Icon(
             Icons.favorite,
             color: Colors.red,
