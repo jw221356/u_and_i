@@ -38,9 +38,11 @@ void onHeartPressed() {
 }
 class _DDay extends StatelessWidget {
   final GestureTapCallback onHeartPressed;
+  final DateTime firstDay;
 
   _DDay({
     required this.onHeartPressed,
+    required this.firstDay,
   });
 
   @override
