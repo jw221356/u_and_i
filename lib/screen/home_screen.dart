@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,8 +10,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   DateTime firstDay = DateTime.now();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             _DDay(
               onHeartPressed: onHeartPressed,
+              firstDay: firstDay,
             ),
             _CoupleImage(),
           ],
@@ -32,15 +32,33 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  void onHeartPressed() {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            color: Colors.white,
+            height: 300,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (DateTime date) {},
+            ),
+          ),
+        );
+      },
+      barrierDismissible: true,
+    );
+  }
 }
-void onHeartPressed() {
-  print('클릭');
-}
+
 class _DDay extends StatelessWidget {
   final GestureTapCallback onHeartPressed;
   final DateTime firstDay;
 
-  _DDay({
+  const _DDay({
     required this.onHeartPressed,
     required this.firstDay,
   });
@@ -48,6 +66,7 @@ class _DDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final now = DateTime.now();
 
     return Column(
       children: [
@@ -63,7 +82,7 @@ class _DDay extends StatelessWidget {
         ),
         const SizedBox(height: 16.0),
         Text(
-          '2023.01.07',
+          '${firstDay.year}.${firstDay.month}.${firstDay.day}',
           style: textTheme.bodyText2,
         ),
         const SizedBox(height: 16.0),
@@ -77,7 +96,7 @@ class _DDay extends StatelessWidget {
         ),
         const SizedBox(height: 16.0),
         Text(
-          'D+365',
+          'D+${DateTime(now.year, now.month, now.day).difference(firstDay).inDays + 1}',
           style: textTheme.headline2,
         ),
       ],
