@@ -77,7 +77,7 @@ class _DDay extends StatelessWidget {
         const SizedBox(height: 16.0),
         Text(
           'U&I',
-          style: textTheme.headline1,
+          style: textTheme.headline2,
         ),
         const SizedBox(height: 16.0),
         Text(
@@ -93,7 +93,7 @@ class _DDay extends StatelessWidget {
         IconButton(
           iconSize: 60.0,
           onPressed: onHeartPressed,
-          icon: Icon(
+          icon: const Icon(
             Icons.favorite,
             color: Colors.red,
           ),
@@ -114,7 +114,7 @@ class _CoupleImage extends StatelessWidget {
     return Expanded(
       child: Center(
         child: Image.asset(
-          'asset/img/middle_image.png',
+          'asset/img/coupleimage.png',
           height: MediaQuery.of(context).size.height / 2,
         ),
       ),

@@ -6,7 +6,7 @@ void main() {
     MaterialApp(
       theme: ThemeData(
           fontFamily: 'sunflower',
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
             headline1: TextStyle(
               color: Colors.white,
               fontSize: 80.0,
@@ -28,7 +28,7 @@ void main() {
             ),
           )
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     ),
   );
 }
